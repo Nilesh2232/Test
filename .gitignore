@@ -1,0 +1,8 @@
+# Root-level ignores
+tickets.db
+*.db
+*.sqlite
+*.sqlite3
+.idea/
+.vscode/
+.DS_Store

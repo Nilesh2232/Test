@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Ticket {{ ticket_id }} — Support Ticketing CRM{% endblock %}
+{% block content %}
+<div class="space-y-6" data-ticket-id="{{ ticket_id }}">
+  <div>
+    <a href="/" class="text-sm text-slate-600 hover:text-slate-900">&larr; Back to tickets</a>
+    <h1 class="text-2xl font-semibold mt-2" id="ticket-heading">Ticket {{ ticket_id }}</h1>
+  </div>
+
+  <div id="error" class="hidden rounded-md bg-red-50 text-red-700 px-4 py-3 text-sm"></div>
+  <div id="success" class="hidden rounded-md bg-green-50 text-green-700 px-4 py-3 text-sm"></div>
+
+  <div id="ticket-detail" class="bg-white border border-slate-200 rounded-lg p-6">
+    <p class="text-slate-500 text-sm">Loading ticket...</p>
+  </div>
+
+  <div class="bg-white border border-slate-200 rounded-lg p-6 space-y-4">
+    <h2 class="text-lg font-medium">Update ticket</h2>
+    <form id="update-form" class="space-y-4">
+      <div>
+        <label for="status" class="block text-sm font-medium mb-1">Status</label>
+        <select id="status" name="status"
+          class="w-full max-w-xs rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400">
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Closed">Closed</option>
+        </select>
+      </div>
+      <div>
+        <label for="notes" class="block text-sm font-medium mb-1">Add note / comment</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Optional note..."
+          class="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-slate-400"></textarea>
+      </div>
+      <button type="submit"
+        class="bg-slate-800 text-white px-4 py-2 rounded-md text-sm hover:bg-slate-700">
+        Save changes
+      </button>
+    </form>
+  </div>
+
+  <div class="bg-white border border-slate-200 rounded-lg p-6">
+    <h2 class="text-lg font-medium mb-4">Notes</h2>
+    <div id="notes-list" class="space-y-3 text-sm text-slate-600">
+      <p>Loading notes...</p>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+<script>
+  initTicketDetail("{{ ticket_id }}");
+</script>
+{% endblock %}
